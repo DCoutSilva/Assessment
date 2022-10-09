@@ -1,0 +1,291 @@
+openapi: 3.0.0
+info:
+  title: Assessment
+  version: 1.0.0
+servers:
+  - url: localhost:8080/
+paths:
+  /api/users:
+    get:
+      tags:
+        - General
+      summary: getUsers
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - General
+      summary: addUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: John Constantine
+                email: john@hell.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - General
+      summary: deleteAllUsers
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json: {}
+
+  /api/accounts:
+    post:
+      tags:
+        - General
+      summary: addAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                accountName: acctwo
+                iban: PT50002700000001234567833
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - General
+      summary: getAccounts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - General
+      summary: deleteAllAccounts
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json: {}
+  /api/products:
+    post:
+      tags:
+        - General
+      summary: addProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: prtwo
+                price: '0.75'
+                account:
+                  id: 6342b9b3bc13494aa41008f1
+                  iban: PT50002700000001234567833
+                  accountName: acctwo
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - General
+      summary: getproducts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - General
+      summary: deleteAllProducts
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json: {}
+  /api/users/<id>:
+    put:
+      tags:
+        - General
+      summary: updateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 6341b653ae593712cb0b2ee6
+                name: Jack Bauer
+                email: jack@ctu-us.com
+                accounts:
+                  - id: 6342b940bc13494aa41008f0
+                    iban: AZ77VTBA00000000001234567890
+                    accountName: accone
+                  - id: 6342b9b3bc13494aa41008f1
+                    iban: PT50002700000001234567833
+                    accountName: acctwo
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - General
+      summary: getUserById
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - General
+      summary: deleteUserById
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json: {}
+  /api/accounts/<id>:
+    put:
+      tags:
+        - General
+      summary: updateAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 6342b940bc13494aa41008f0
+                iban: BR1500000000000010932840814P2
+                accountName: accone
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - General
+      summary: getAccountById
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - General
+      summary: deleteAccountById
+      responses:
+        '200':
+          description: No Content
+          content:
+            application/json: {}
+  /api/products/<id>:
+    put:
+      tags:
+        - General
+      summary: updateProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 6342baa6bc13494aa41008f2
+                account:
+                  id: 6342b9b3bc13494aa41008f1
+                  iban: PT50002700000001234567833
+                  accountName: acctwo
+                name: prone
+                price: 1.02
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - General
+      summary: getProductById
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - General
+      summary: deleteProductById
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json: {}
+  /pay/link:
+    post:
+      tags:
+        - General
+      summary: generatePaymentLink
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                accountId: 6342b9b3bc13494aa41008f1
+                products:
+                  - id: 6342baa6bc13494aa41008f2
+                    account:
+                      id: 6342b9b3bc13494aa41008f1
+                      iban: PT50002700000001234567833
+                      accountName: acctwo
+                    name: prone
+                    price: 1.2
+                  - id: 6342bad6bc13494aa41008f3
+                    account:
+                      id: 6342b9b3bc13494aa41008f1
+                      iban: PT50002700000001234567833
+                      accountName: acctwo
+                    name: prtwo
+                    price: 0.75
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /pay/payment/:
+    get:
+      tags:
+        - General
+      summary: retrievePaymentItems
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: 98548lk6bc134poJH66988f2
+      responses:
+        '200':
+          description: Successfull response
+          content:
+            application/json: {}
+            
