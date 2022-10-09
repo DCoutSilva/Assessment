@@ -4,12 +4,12 @@
   A lot can be improved
   
   
- # Backend
+ ## Backend
   Backend inside assessment folder, developed using Java, SpringBoot, MongoDB
   to run just start you MongoDB Server on default port 27017, clone the repository and run "mvn spring-boot:run"
   
-  # Frontend
-    Frontend code is within assessmt-front folder, I tried developing in react, but I have no experience with it so it does not work (sorry about that)
+ ## Frontend
+   Frontend code is within assessmt-front folder, I tried developing in react, but I have no experience with it so it does not work (sorry about that)
  
  #  
   
