@@ -9,8 +9,9 @@
   to run just start you MongoDB Server on default port 27017, clone the repository and run "mvn spring-boot:run"
   
   # Frontend
-    Frontend code is within assessmt-front folder, I tried developing in react, but I have no experience with it so it does not work #sorry
-  # 
+    Frontend code is within assessmt-front folder, I tried developing in react, but I have no experience with it so it does not work (sorry about that)
+ 
+ #  
   
    The file openapi.yaml has the swagger describing the api endpoints
   #   
